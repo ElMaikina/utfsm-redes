@@ -1,20 +1,23 @@
 import socket
 
-# Crea un socket para conectarse al servidor intermediario
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Constantes de la conexion
+HEADERSIZE = 10
+IP = "localhost"
+PORT = 8000
 
-# Direccion del intermediario
-add = ('localhost', 8000)
+# Crea un socket para establecer el servidor intermediario
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # Se conecta y recibe informacion
-s.bind(add)
-s.listen(5)
+server_socket.bind((IP, PORT))
+server_socket.listen(1)
 
-# Ciclo de connexion con el intermediario
 while True:
-    sc, addr = s.accept()
-    print(f"Se establecio una conexion desde {addr}")
-    sc.send(bytes("Bienvenido al servidor!", "utf-8"))
-
+    client_socket, address = server_socket.accept()
+    #print(f"Stablished new conection from adress: {address}")
+    msg = "Welcome to the server"
+    msg = f"{len(msg):<{HEADERSIZE}}" + msg
+    client_socket.send(bytes(msg, "utf-8"))
 
 

@@ -20,7 +20,12 @@ clients = {}
 while True:
     client_socket, address = server_socket.accept()
     #print(f"Stablished new conection from adress: {address}")
-    msg = "Welcome to the server"
-    msg = f"{len(msg):<{HEADERSIZE}}" + msg
-    client_socket.send(bytes(msg, "utf-8"))
+    msg_out = ""
+    msg_out += "\nBienvenido al Juego\n"
+    msg_out += "Seleccione una opcion\n"
+    msg_out += "1-Jugar\n"
+    msg_out += "2-Salir"
+
+    msg_out = f"{len(msg_out):<{HEADERSIZE}}" + msg_out
+    client_socket.send(bytes(msg_out, "utf-8"))
 

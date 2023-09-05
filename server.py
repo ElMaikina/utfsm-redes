@@ -13,11 +13,14 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((IP, PORT))
 server_socket.listen(1)
 
+socket_list = [server_socket]
+
+clients = {}
+
 while True:
     client_socket, address = server_socket.accept()
     #print(f"Stablished new conection from adress: {address}")
     msg = "Welcome to the server"
     msg = f"{len(msg):<{HEADERSIZE}}" + msg
     client_socket.send(bytes(msg, "utf-8"))
-
 

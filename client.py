@@ -9,24 +9,34 @@ PORT = 8000
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((IP, PORT))
 
-# Recibe un mensaje en formato UTF-8
-new_msg_in = True
-full_msg_in = ""
+game_is_running = True
 
-while True:
-    msg_in = s.recv(16)
-    if new_msg_in:
-        #print(f"New message length: {msg_in[:HEADERSIZE]}")
-        msg_in_len = int(msg_in[:HEADERSIZE])
-        new_msg_in = False
+def run():
+    new_msg_in = True
+    full_msg_in = ""
+    msg_in_len = 0
 
-    full_msg_in += msg_in.decode("utf-8")
+    while True:
+        msg_in = s.recv(16)
 
-    if len(full_msg_in)-HEADERSIZE == msg_in_len:
-        #print("Full message recieved")
-        print(full_msg_in[HEADERSIZE:])
-        new_msg_in = True
-        full_msg_in = ""
+        if msg_in[:HEADERSIZE] == b'':
+            print("No hay respuesta...")
+            return
 
-print(full_msg)
+        if new_msg_in:
+            msg_in_len = int(msg_in[:HEADERSIZE])
+            new_msg_in = False
+    
+        full_msg_in += msg_in.decode("utf-8")
+    
+        if len(full_msg_in)-HEADERSIZE == msg_in_len:
+            print(full_msg_in[HEADERSIZE:])
+            new_msg_in = True
+            full_msg_in = ""
+            return
+
+if __name__ == '__main__':
+    while game_is_running:
+        run()
+        play = input("->")
 

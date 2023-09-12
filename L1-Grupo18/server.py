@@ -28,9 +28,6 @@ def PrintTablero(tablero):
     print(".  0 | 1 | 2 | 3 | 4 | 5")
     for x in range(6):
         for y in range(6):
-            if not isinstance(tablero[x][y], int):
-                print("Arreglo no recorrible")
-                return
             if tablero[x][y]==0:
                 PrintTable[x][y]="\u26AB"
             elif tablero[x][y]==1:
@@ -106,11 +103,9 @@ if __name__ == '__main__':
                 Tablero=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]#Reseteo del tablero por si se quiere un siguiente Juego
                 msg="Ganaste"
                 client_socket.send(msg.encode())#Enviar al Cliente la victoria del Jugador
-                conecta4_socket.sendto("Finalizar".encode(), (IP, serverPort))#Enviar al server el reseteo del juego para prepararse
+                conecta4_socket.sendto("Reiniciar".encode(), (IP, serverPort))#Enviar al server el reseteo del juego para prepararse
                 print(">>>Gano el Jugador<<<")
                 print("==============================")
-                serverSocket2.close()
-                exit()
             else:
                 msg=PlayerMessage[0]
                 conecta4_socket.sendto(str(msg).encode(), (IP, serverPort))
@@ -137,11 +132,9 @@ if __name__ == '__main__':
                     Tablero=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
                     msg="Gano CPU"
                     client_socket.send(msg.encode())#Avisar al cliente de que gano el servidor
-                    conecta4_socket.sendto("Finalizar".encode(), (IP, serverPort))#Avisar al conecta4 de que se tiene que reiniciar
+                    conecta4_socket.sendto("Reset".encode(), (IP, serverPort))#Avisar al conecta4 de que se tiene que reiniciar
                     print(">>>Gano la CPU<<<")
                     print("==============================")
-                    serverSocket2.close()
-                    exit()
 
                 else:#Jugada normal donde nadie gano y se envia el jugada de cpu al cliente
                     client_socket.send(JugadaCPU.encode())

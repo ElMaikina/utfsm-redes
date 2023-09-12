@@ -8,6 +8,8 @@ import (
     "strconv"
 )
 
+
+
 func main() {
     IP := "localhost:"
     PORT :="8001"
@@ -35,14 +37,12 @@ Reset:
 		PORT2 := rand.Intn(65535-8000) + 8000 //Generar puerto aleatorio
 		s2, err := net.ResolveUDPAddr("udp4", ":"+strconv.Itoa(PORT2))
 		if err != nil { //Errores de conexion
-			fmt.Println("Hubo un error de conexion!")
 			fmt.Println(err)
 			return
 		}
 
 		connection2, err := net.ListenUDP("udp4", s2)
 		if err != nil { //Errores de conexion
-			fmt.Println("Hubo un error de conexion!")
 			fmt.Println(err)
 			return
 		} 
@@ -51,11 +51,7 @@ Reset:
 		n, addr, _ := conn.ReadFromUDP(buffer) //Recepcion de orden de jugar
 		msg := string(buffer[:n])
 		_, _ = conn.WriteToUDP([]byte(strconv.Itoa(PORT2)), addr) // Enviar Puerto2
-
-		// Imprime el mensaje por pantalla
 		fmt.Println("Recibi el msg del Server intermedio")
-		fmt.Println(msg)
-
         if msg == "Finalizar" { 
 			fmt.Println("Juego Finalizado")
 			break

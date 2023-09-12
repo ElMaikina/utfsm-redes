@@ -23,9 +23,6 @@ def PrintTablero(tablero):
     print(".  0 | 1 | 2 | 3 | 4 | 5")
     for x in range(6):
         for y in range(6):
-            if not isinstance(tablero[x][y], int):
-                print("No se pudo mostrar tablero")
-                return
             if tablero[x][y]==0:
                 PrintTable[x][y]="\u26AB"
             elif tablero[x][y]==1:
@@ -89,19 +86,17 @@ if __name__ == '__main__':
                 Tablero=CambiarTablero(Tablero,int(jugada),1)
                 PrintTablero(Tablero)
                 response = server_socket.recv(1024).decode()
-                #Condiciones de Victoria
+                #Condiciones de Vicotria
                 if(response=="Ganaste"):
                     flag2=False
                     print(">>>Gano el Jugador<<<")
                     print("==============================")
-                    exit()
                 elif(response=="Gano CPU"):
                     flag2=False
                     print(">>>Gano la CPU<<<")
                     print("==============================")
-                    exit()
                 else:#condicion de siguiente Turno
-                    tablero=CambiarTablero(Tablero,int(float(response)),2)
+                    tablero=CambiarTablero(Tablero,int(response),2)
                     PrintTablero(Tablero)
                 
                 

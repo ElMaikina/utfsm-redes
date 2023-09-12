@@ -17,6 +17,10 @@ client_socket, address = server_socket.accept()
 # Variable que mantiene el juego funcionando
 game_is_running = True
 def CambiarTablero(Tablero, col, player):
+    if col < 0:
+        return
+    if col > 5:
+        return
     # Find the first available row in the specified column
     for row in range(len(Tablero) - 1, -1, -1):
         if Tablero[row][col] == 0:

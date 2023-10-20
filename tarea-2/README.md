@@ -1,8 +1,8 @@
 # Tarea 1 - Redes de Computadores
 
 Integrantes:
-    * Miguel Soto           Rol: 201973623-K
-    * Joaquin Contreras     Rol: 201973527-6
+* Miguel Soto           Rol: 201973623-K
+* Joaquin Contreras     Rol: 201973527-6
 Grupo: 18
 
 ## Ejecucion

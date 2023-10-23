@@ -1,4 +1,4 @@
-# Tarea 1 - Redes de Computadores
+# Tarea 2 - Redes de Computadores
 
 Integrantes:
 * Miguel Soto           Rol: 201973623-K

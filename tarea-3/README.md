@@ -7,10 +7,9 @@ Grupo: 18
 
 ## Ejecucion
 
-Para poder hacer funcionar el modelo, se debe hacer
-uso de la herramienta Packet Tracer de Cisco. Basta
-con abrir el archivo _entrega.pkt_ desde dicha
-aplicacion para visualizarlo.
+El desarrollo de cada parte se encuentra en su carpeta respectiva, para correr cada
+codigo basta con hacer el commando './run' desde la carpeta correspondiente. El resto
+de los comandos se realizaron desde la interfaz de Mininet. 
 
 ## Análisis
 
